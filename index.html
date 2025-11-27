@@ -34,29 +34,27 @@
 <!-- MAIN MENU -->
 <div class="menu" id="menu">
 
+  <!-- LOGGED OUT -->
   <div id="menuLoggedOut">
     <div class="btn" onclick="openScreen('loginScreen')"><span>👤</span>LOGIN</div>
     <div class="btn" onclick="openScreen('registerScreen')"><span>➕</span>REGISTER</div>
   </div>
 
+  <!-- LOGGED IN -->
   <div id="menuLoggedIn">
-    <div class="btn danger-btn" onclick="confirmHardReset()">RESET XP</div>
+    <div class="btn danger-btn" onclick="confirmHardReset()"><span>❗</span>RESET XP</div>
 
-    <div class="btn" onclick="openScreen('xpScreen')">XP</div>
-    <div class="btn" onclick="openScreen('streakScreen')">STREAK</div>
-    <div class="btn" onclick="openScreen('achScreen')">ACHIEVEMENTS</div>
-    <div class="btn" onclick="openScreen('rewardsScreen')">REWARDS</div>
-    <div class="btn" onclick="openScreen('missionsScreen')">MISSIONS</div>
+    <div class="btn" onclick="openScreen('xpScreen')"><span>⭐</span>XP & LEVEL</div>
+    <div class="btn" onclick="openScreen('streakScreen')"><span>🔥</span>STREAK</div>
+    <div class="btn" onclick="openScreen('achScreen')"><span>🏅</span>ACHIEVEMENTS</div>
+    <div class="btn" onclick="openScreen('rewardsScreen')"><span>🎁</span>REWARDS</div>
+    <div class="btn" onclick="openScreen('missionsScreen')"><span>🎯</span>MISSIONS</div>
 
-    <div class="btn" onclick="loadCloud()">SYNC CLOUD</div>
-
-    <!-- ❌ THIS WAS THE BIG PROBLEM -->
+    <div class="btn" onclick="loadCloud()"><span>☁️</span>SYNC CLOUD</div>
     <div class="btn" id="guestLoginBtn" onclick="openScreen('loginScreen')">
       <span>🔒</span> LOGIN TO SAVE
     </div>
-    <!-- ❌ This was incorrectly inside menuLoggedIn -->
-
-    <div class="btn" onclick="logout()">LOGOUT</div>
+    <div class="btn" onclick="logout()"><span>🚪</span>LOGOUT</div>
   </div>
 </div>
 

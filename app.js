@@ -441,17 +441,17 @@ function updateLoggedUserBar(user){
 ============================================================ */
 function refreshMenu() {
   const loggedOut = document.getElementById("menuLoggedOut");  // Login + Register
-  const loggedIn  = document.getElementById("menuLoggedIn");   // XP, Reset XP, Streak, Achievements
+  const loggedIn  = document.getElementById("menuLoggedIn");   // XP, Streak, Reset XP
   const userBar   = document.getElementById("loggedUserBar");
-  const syncBar   = document.getElementById("syncStatus");
+  const syncBar   = document.querySelector(".syncBar");
 
   // --- GUEST MODE ---
   if (guestMode === true) {
     userBar.innerHTML = "GUEST MODE";
 
-    loggedOut.style.display = "flex";   // show login & register
-    loggedIn.style.display  = "flex";   // ALL features still visible
-    if (syncBar) syncBar.innerText = "GUEST MODE";
+    loggedOut.style.display = "flex";   // show Login + Register
+    loggedIn.style.display  = "flex";   // show all the normal menu buttons
+    if (syncBar) syncBar.style.display = "none"; // hide sync info
     return;
   }
 
@@ -459,26 +459,9 @@ function refreshMenu() {
   if (currentUser) {
     userBar.innerHTML = "LOGGED IN: " + currentUser.email;
 
-    loggedOut.style.display = "none";   // hide Login & Register completely
-    loggedIn.style.display  = "flex";   // show main menu only
-    if (syncBar) syncBar.innerText = "SYNC: OK";
-    return;
-  }
-
-  // --- LOGGED OUT (NOT GUEST) ---
-  userBar.innerHTML = "";
-  loggedOut.style.display = "flex";
-  loggedIn.style.display  = "none";
-  if (syncBar) syncBar.innerText = "";
-}
-
-  // --- LOGGED IN ---
-  if (currentUser) {
-    userBar.innerHTML = "LOGGED IN: " + currentUser.email;
-
-    loggedOut.style.display = "none";  
-    loggedIn.style.display  = "flex";  
-    if (syncBar) syncBar.style.display = "block";
+    loggedOut.style.display = "none";   // hide Login + Register
+    loggedIn.style.display  = "flex";   // show XP, Streak, Reset XP
+    if (syncBar) syncBar.style.display = "block"; // show sync
     return;
   }
 
