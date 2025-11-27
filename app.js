@@ -439,9 +439,37 @@ function updateLoggedUserBar(user){
 /* ============================================================
    SCREEN SYSTEM
 ============================================================ */
-function refreshMenu(){
-  const guestBtn = document.getElementById("guestLoginBtn");
-  guestBtn.style.display = guestMode ? "block" : "none";
+function refreshMenu() {
+  const loggedOut = document.getElementById("menuLoggedOut");  
+  const loggedIn  = document.getElementById("menuLoggedIn");   
+  const userBar   = document.getElementById("loggedUserBar");
+  const syncBar   = document.querySelector(".syncBar");
+
+  // --- GUEST MODE ---
+  if (guestMode === true) {
+    userBar.innerHTML = "GUEST MODE";
+
+    loggedOut.style.display = "flex";   // Login + Register
+    loggedIn.style.display  = "flex";   // XP, Streak, Reset XP
+    if (syncBar) syncBar.style.display = "none";
+    return;
+  }
+
+  // --- LOGGED IN ---
+  if (currentUser) {
+    userBar.innerHTML = "LOGGED IN: " + currentUser.email;
+
+    loggedOut.style.display = "none";  
+    loggedIn.style.display  = "flex";  
+    if (syncBar) syncBar.style.display = "block";
+    return;
+  }
+
+  // --- LOGGED OUT (NOT GUEST) ---
+  userBar.innerHTML = "";
+  loggedOut.style.display = "flex";
+  loggedIn.style.display  = "none";
+  if (syncBar) syncBar.style.display = "none";
 }
 
 function openScreen(id){
