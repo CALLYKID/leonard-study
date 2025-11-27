@@ -440,20 +440,37 @@ function updateLoggedUserBar(user){
    SCREEN SYSTEM
 ============================================================ */
 function refreshMenu() {
-  const loggedOut = document.getElementById("menuLoggedOut");  
-  const loggedIn  = document.getElementById("menuLoggedIn");   
+  const loggedOut = document.getElementById("menuLoggedOut");  // Login + Register
+  const loggedIn  = document.getElementById("menuLoggedIn");   // XP, Reset XP, Streak, Achievements
   const userBar   = document.getElementById("loggedUserBar");
-  const syncBar   = document.querySelector(".syncBar");
+  const syncBar   = document.getElementById("syncStatus");
 
   // --- GUEST MODE ---
   if (guestMode === true) {
     userBar.innerHTML = "GUEST MODE";
 
-    loggedOut.style.display = "flex";   // Login + Register
-    loggedIn.style.display  = "flex";   // XP, Streak, Reset XP
-    if (syncBar) syncBar.style.display = "none";
+    loggedOut.style.display = "flex";   // show login & register
+    loggedIn.style.display  = "flex";   // ALL features still visible
+    if (syncBar) syncBar.innerText = "GUEST MODE";
     return;
   }
+
+  // --- LOGGED IN ---
+  if (currentUser) {
+    userBar.innerHTML = "LOGGED IN: " + currentUser.email;
+
+    loggedOut.style.display = "none";   // hide Login & Register completely
+    loggedIn.style.display  = "flex";   // show main menu only
+    if (syncBar) syncBar.innerText = "SYNC: OK";
+    return;
+  }
+
+  // --- LOGGED OUT (NOT GUEST) ---
+  userBar.innerHTML = "";
+  loggedOut.style.display = "flex";
+  loggedIn.style.display  = "none";
+  if (syncBar) syncBar.innerText = "";
+}
 
   // --- LOGGED IN ---
   if (currentUser) {
